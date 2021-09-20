@@ -11,7 +11,9 @@ class Program
         {
             window.Closed += (s,e) => window.Close();
 
-            Clock clock= new Clock();
+            Clock clock = new Clock();
+            //Ball ball = new Ball();
+            
 
             // Set up game objects here
 
