@@ -1,3 +1,4 @@
+using System.Net.Mime;
 using System;
 using SFML.Graphics;
 using SFML.System;
@@ -11,7 +12,10 @@ namespace sfml
         public const float Diameter = 20.0f;  
         public const float Radius= Diameter * .5f;
         public Vector2f direction = new Vector2f(1,1) / MathF.Sqrt(2.0f);
-        public float speed = 100.0f;
+        public float speed = 200.0f;
+        public int health = 3;
+        public int score = 0;
+        public Text gui;
                 
 
         public Ball(){
@@ -29,6 +33,9 @@ namespace sfml
                 Diameter / ballTextureSize.X,
                 Diameter / ballTextureSize.Y);
                 //bilden blir 20 pixlar hög och bred
+            gui = new Text();
+            gui.CharacterSize = 24;
+            gui.Font = new Font("assets/future.ttf");
         }
         public void Update(float deltaTime){
             var newPos = sprite.Position;
@@ -64,6 +71,13 @@ namespace sfml
         public void Draw(RenderTarget target){
             target.Draw(sprite);
             //ritar bilden
+
+            gui.DisplayedString = $"Health {health}";
+            gui.Position = new Vector2f(12, 8);
+            target.Draw(gui);
+            gui.DisplayedString = $"Score: {score}";
+            gui.Position = new Vector2f(Program.ScreenW - gui.GetGlobalBounds().Width - 12,8);
+            target.Draw(gui);
         }
         public void Reflect(Vector2f normal){
             direction -= normal * (2 * (direction.X * normal.X + direction.Y * normal.Y));
