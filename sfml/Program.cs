@@ -3,29 +3,38 @@ using SFML.System;
 using SFML.Window;
 using SFML.Graphics;
 
-class Program
+namespace sfml
 {
-    static void Main(string[] args)
+    class Program
     {
-        using (var window = new RenderWindow(new VideoMode(800, 600), "Hello SFML")) 
+
+        public const int ScreenW = 500;
+        public const int ScreenH = 700;
+        static void Main(string[] args)
         {
-            window.Closed += (s,e) => window.Close();
-
-            Clock clock = new Clock();
-            //Ball ball = new Ball();
-            
-
-            // Set up game objects here
-
-            while (window.IsOpen) 
+            using (var window = new RenderWindow(new VideoMode(ScreenW, ScreenH), "SFML"))
             {
-                float deltaTime= clock.Restart().AsSeconds();
-                window.DispatchEvents();
-                window.Clear(new Color(131, 197, 235));
+                window.Closed += (s, e) => window.Close();
 
-                // Put rendering code here 
+                Clock clock = new Clock();
+                Ball ball = new Ball();
+                
 
-                window.Display();
+
+                // Set up game objects here
+
+                while (window.IsOpen)
+                {
+                    float deltaTime = clock.Restart().AsSeconds();
+                    window.DispatchEvents();
+                    ball.Update(deltaTime);
+                    window.Clear(new Color(131, 197, 235));
+                    ball.Draw(window);
+
+                    // Put rendering code here 
+
+                    window.Display();
+                }
             }
         }
     }
