@@ -49,6 +49,7 @@ namespace sfml
                     ball.Reflect(hit.Normalized());
                     positions.RemoveAt(i);
                     i = 0;
+                    //collitoin fungerar inte. fråga emil
                 }
             }
         }
