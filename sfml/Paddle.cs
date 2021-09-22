@@ -28,8 +28,6 @@ namespace sfml
                 sprite.GetGlobalBounds().Width,
                 sprite.GetGlobalBounds().Height
             );
-
-
         }
         public void Update(Ball ball, float deltaTime){
             var newPos = sprite.Position;

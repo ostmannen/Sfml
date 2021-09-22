@@ -11,7 +11,7 @@ namespace sfml
         public Sprite sprite;
         public const float Diameter = 20.0f;  
         public const float Radius= Diameter * .5f;
-        public Vector2f direction = new Vector2f(1,1) / MathF.Sqrt(2.0f);
+        public Vector2f direction = new Vector2f(-1,1) / MathF.Sqrt(2.0f);
         public float speed = 200.0f;
         public int health = 3;
         public int score = 0;
@@ -22,7 +22,7 @@ namespace sfml
             sprite = new Sprite();
             sprite.Texture = new Texture("assets/ball.png");
             //Hämtar in bilden av bollen
-            sprite.Position = new Vector2f(250,300);
+            sprite.Position = resetBall();
             //sätter position
 
             Vector2f ballTextureSize = (Vector2f) sprite.Texture.Size;
@@ -57,7 +57,8 @@ namespace sfml
             }
             if (newPos.Y > Program.ScreenH - Radius){
                 newPos.Y = Program.ScreenH - Radius;
-                Reflect(new Vector2f(0,-1));
+                health--;
+                newPos = resetBall();
             }
             if (newPos.Y < 0 + Radius){
                 newPos.Y = 0 + Radius;
@@ -82,6 +83,19 @@ namespace sfml
         public void Reflect(Vector2f normal){
             direction -= normal * (2 * (direction.X * normal.X + direction.Y * normal.Y));
             //formel för att reflectera riktningar
+        }
+        public Vector2f resetBall(){
+            Random random = new Random();
+            Vector2f tempDirection = new Vector2f();
+            int chooseDirection = random.Next() % 2;
+            if (chooseDirection == 1){
+                tempDirection = new Vector2f(1, 1);
+            }
+            else{
+                tempDirection = new Vector2f(-1, 1);
+            }
+            this.direction = tempDirection / MathF.Sqrt(2.0f);
+            return new Vector2f(250, 300);     
         }
     }
 }

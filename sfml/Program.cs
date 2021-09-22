@@ -19,6 +19,7 @@ namespace sfml
                 Clock clock = new Clock();
                 Ball ball = new Ball();
                 Paddle paddle = new Paddle();
+                Tiles tiles = new Tiles();
                 
                 
 
@@ -30,9 +31,15 @@ namespace sfml
                     window.DispatchEvents();
                     ball.Update(deltaTime);
                     paddle.Update(ball, deltaTime);
+                    tiles.Update(deltaTime, ball);
+                    if (ball.health <= 0){
+                        ball = new Ball();
+                        paddle = new Paddle();
+                    }
                     window.Clear(new Color(131, 197, 235));
                     ball.Draw(window);
                     paddle.Draw(window);
+                    tiles.Draw(window);
 
                     // Put rendering code here 
 
