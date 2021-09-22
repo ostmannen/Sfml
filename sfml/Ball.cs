@@ -22,7 +22,7 @@ namespace sfml
             sprite = new Sprite();
             sprite.Texture = new Texture("assets/ball.png");
             //Hämtar in bilden av bollen
-            sprite.Position = resetBall();
+            sprite.Position = new Vector2f(250, 300);
             //sätter position
 
             Vector2f ballTextureSize = (Vector2f) sprite.Texture.Size;

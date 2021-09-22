@@ -43,8 +43,8 @@ namespace sfml
             for (int i = 0; i < positions.Count; i++)
             {
                 var pos = positions[i];
-                if (Collision.CircleRectangle(ball.sprite.Position, Ball.Radius, pos,
-                size, out Vector2f hit)){
+                if (Collision.CircleRectangle(ball.sprite.Position, Ball.Radius, 
+                pos, size, out Vector2f hit)){
                     ball.sprite.Position += hit;
                     ball.Reflect(hit.Normalized());
                     positions.RemoveAt(i);
