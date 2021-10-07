@@ -35,11 +35,13 @@ namespace sfml
                     if (ball.health <= 0){
                         ball = new Ball();
                         paddle = new Paddle();
+                        tiles = new Tiles();
                     }
                     window.Clear(new Color(131, 197, 235));
                     ball.Draw(window);
                     paddle.Draw(window);
                     tiles.Draw(window);
+                    
 
                     // Put rendering code here 
 

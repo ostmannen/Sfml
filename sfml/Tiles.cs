@@ -37,6 +37,10 @@ namespace sfml
                 width / tileTextureSize.X,
                 length / tileTextureSize.Y
             );
+            size = new Vector2f(
+                sprite.GetGlobalBounds().Width,
+                sprite.GetGlobalBounds().Height
+            );
 
         }
         public void Update(float deltaTime, Ball ball){
