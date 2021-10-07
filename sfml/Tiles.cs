@@ -12,7 +12,7 @@ namespace sfml
         public Sprite sprite;
         public const float width = 64.0f;
         public const float length = 24.0f;
-        public Vector2f size;
+        public Vector2f size = new Vector2f(64, 24);
         public List<Vector2f> positions;
         public Tiles(){
             positions = new List<Vector2f>();
@@ -37,10 +37,6 @@ namespace sfml
                 width / tileTextureSize.X,
                 length / tileTextureSize.Y
             );
-            size = new Vector2f(
-                sprite.GetGlobalBounds().Width,
-                sprite.GetGlobalBounds().Height
-            );
 
         }
         public void Update(float deltaTime, Ball ball){
@@ -52,8 +48,9 @@ namespace sfml
                     ball.sprite.Position += hit;
                     ball.Reflect(hit.Normalized());
                     positions.RemoveAt(i);
+                    ball.score += 100; 
                     i = 0;
-                    //collitoin fungerar inte. fråga emil
+                    
                 }
             }
         }
@@ -63,6 +60,10 @@ namespace sfml
                 sprite.Position = positions[i];
                 target.Draw(sprite);
             }
+        } public void resetTiles()
+        { 
+            
+
         }
     }
 }
